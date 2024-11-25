@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.saragb.tarea3dwesSara.modelo.Planta;
-import com.saragb.tareadwesSara.repositorios.PlantaRepository;
+import com.saragb.tarea3dwesSara.repositorios.PlantaRepository;
 
 
 
