@@ -23,7 +23,7 @@ public class Ejemplar implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(length = 50, nullable = false)
 	private String nombre;
 	
 	@ManyToOne
@@ -33,7 +33,55 @@ public class Ejemplar implements Serializable{
 	@OneToMany(mappedBy = "ejemplar", cascade = CascadeType.ALL)
 	private List<Mensaje> mensajes = new LinkedList<Mensaje>();
 
+	
+	
+	
+	public Ejemplar() {
+	}
 
+	public Ejemplar(String nombre, Planta planta) {
+		this.nombre = nombre;
+		this.planta = planta;
+	}
+	
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Planta getPlanta() {
+		return planta;
+	}
+
+	public void setPlanta(Planta planta) {
+		this.planta = planta;
+	}
+
+	public List<Mensaje> getMensajes() {
+		return mensajes;
+	}
+
+	public void setMensajes(List<Mensaje> mensajes) {
+		this.mensajes = mensajes;
+	}
+
+
+	
+	
 
 	
 	

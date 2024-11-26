@@ -24,17 +24,68 @@ public class Persona implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(length = 50, nullable= false)
 	private String nombre;
 	
-	@Column(unique=true)
+	@Column(length = 50, unique=true, nullable = false)
 	private String email;
 	
 	@OneToOne(mappedBy= "persona", cascade= CascadeType.ALL)
 	private Credenciales credenciales;
 	
-	@OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "persona")
 	private List<Mensaje> mensajes = new LinkedList<Mensaje>();
+
+	public Persona() {
+	}
+
+	public Persona(String nombre, String email) {
+		this.nombre = nombre;
+		this.email = email;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Credenciales getCredenciales() {
+		return credenciales;
+	}
+
+	public void setCredenciales(Credenciales credenciales) {
+		this.credenciales = credenciales;
+	}
+
+	public List<Mensaje> getMensajes() {
+		return mensajes;
+	}
+
+	public void setMensajes(List<Mensaje> mensajes) {
+		this.mensajes = mensajes;
+	}
+	
+	
+	
 	
 	
 

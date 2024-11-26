@@ -1,9 +1,11 @@
 package com.saragb.tarea3dwesSara.modelo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,27 +21,77 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name="mensajes")
-public class Mensaje {
+public class Mensaje  implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime fechaHora;
 	
-	@Column
+	@Column(length = 500, nullable = false)
 	@Lob
 	private String mensaje;
 	
 	@ManyToOne
-	@JoinColumn(name="idPersona")
+	@JoinColumn(name="idPersona", nullable = false)
 	private Persona persona;
 	
 	@ManyToOne
-	@JoinColumn(name="idEjemplar")
+	@JoinColumn(name="idEjemplar", nullable = false)
 	private Ejemplar ejemplar;
+
+	public Mensaje() {
+	}
+
+	public Mensaje(LocalDateTime fechaHora, String mensaje, Persona persona, Ejemplar ejemplar) {
+		this.fechaHora = fechaHora;
+		this.mensaje = mensaje;
+		this.persona = persona;
+		this.ejemplar = ejemplar;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getFechaHora() {
+		return fechaHora;
+	}
+
+	public void setFechaHora(LocalDateTime fechaHora) {
+		this.fechaHora = fechaHora;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	public Ejemplar getEjemplar() {
+		return ejemplar;
+	}
+
+	public void setEjemplar(Ejemplar ejemplar) {
+		this.ejemplar = ejemplar;
+	}
 	
 	
 	
