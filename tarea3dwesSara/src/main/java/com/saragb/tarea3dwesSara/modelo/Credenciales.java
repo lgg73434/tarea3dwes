@@ -1,61 +1,38 @@
 package com.saragb.tarea3dwesSara.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="credenciales")
 public class Credenciales {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	
-	private Long idPersona;
+	@Column(unique=true, length=15)
 	private String usuario;
+	
+	@Column(length=10,  nullable = false)
 	private String password;
 	
+	@OneToOne
+	@JoinColumn(name="idPersona", unique=true)
+	private Persona persona;
+	
 
-	public Credenciales() {
-	}
 
-	public Credenciales(String usuario, String password) {
-		this.usuario = usuario;
-		this.password = password;
-	}
 
-	public Credenciales(Long id, String usuario, String password) {
-		this.idPersona = id;
-		this.usuario = usuario;
-		this.password = password;
-	}
 
-	public Long getId() {
-		return idPersona;
-	}
 
-	public void setId(Long id) {
-		this.idPersona = id;
-	}
-
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "Credenciales: [id=" + idPersona + ", usuario=" + usuario + ", password=" + password + "]";
-	}
-
+	
 	
 	
 

@@ -14,30 +14,17 @@ import com.saragb.tarea3dwesSara.servicios.ServiciosPlanta;
 
 public class Principal implements CommandLineRunner{
 	
-	//@Autowired
+	@Autowired
 	ServiciosPlanta svPlanta;
 	
-	//@Autowired
+	@Autowired
 	ServiciosEjemplar svEjemplar;
-	
-	//@Autowired
-	ServiciosPersona svPersona;
-	
-	//@Autowired
-	ServiciosCredenciales svCredenciales;
-	
-	//@Autowired
-	ServiciosMensaje svMensaje;
+
 	
 	//Esto viene a ser el 'main'
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("*** INICIO ****");
-		
-		Planta p = new Planta();
-		svPlanta.validarPlanta(p);
-		svPlanta.addPlanta(p);
-		
 		System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-");
 		System.out.println("*** FIN ****");
 		

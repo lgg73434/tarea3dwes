@@ -17,10 +17,6 @@ public class ServiciosPlanta {
 	@Autowired
 	ServiciosEjemplar svEjemplar;
 	
-	public boolean validarPlanta(Planta p) {
-		return true;
-	}
-	
 	public void addPlanta (Planta p) {
 		plantaRepo.save(p);
 		

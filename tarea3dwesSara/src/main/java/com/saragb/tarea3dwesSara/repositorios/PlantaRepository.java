@@ -13,6 +13,4 @@ import com.saragb.tarea3dwesSara.modelo.Planta;
 public interface PlantaRepository extends JpaRepository <Planta, Long>{
 
 	
-	public void addPlanta (Planta p);
-	
 }
