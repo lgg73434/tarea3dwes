@@ -1,7 +1,7 @@
 package com.saragb.tarea3dwesSara.modelo;
 
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -10,7 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -19,6 +18,11 @@ import jakarta.persistence.Table;
 @Table(name="plantas")
 public class Planta  implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -33,7 +37,7 @@ public class Planta  implements Serializable{
 	private String nombreCientifico;
 	
 	@OneToMany(mappedBy = "planta", cascade = CascadeType.ALL)
-	private List<Ejemplar> ejemplares = new LinkedList<Ejemplar>();
+	private List<Ejemplar> ejemplares = new ArrayList<Ejemplar>();
 
 	public Planta() {
 	}

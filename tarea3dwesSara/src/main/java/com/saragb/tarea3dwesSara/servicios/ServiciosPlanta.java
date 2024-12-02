@@ -1,5 +1,7 @@
 package com.saragb.tarea3dwesSara.servicios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,12 @@ public class ServiciosPlanta {
 	public void addPlanta (Planta p) {
 		plantaRepo.save(p);
 		
-		
 	}
+
+	public List<Planta> mostrarPlantas() {
+		return plantaRepo.findAll();
+	}
+	
+	
 
 }

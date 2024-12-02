@@ -18,11 +18,15 @@ import jakarta.persistence.TemporalType;
 
 
 
-
 @Entity
 @Table(name="mensajes")
 public class Mensaje  implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

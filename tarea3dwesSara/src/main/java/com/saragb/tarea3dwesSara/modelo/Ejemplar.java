@@ -1,7 +1,7 @@
 package com.saragb.tarea3dwesSara.modelo;
 
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -19,6 +19,11 @@ import jakarta.persistence.Table;
 @Table(name="ejemplares")
 public class Ejemplar implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -31,7 +36,7 @@ public class Ejemplar implements Serializable{
 	private Planta planta;
 	
 	@OneToMany(mappedBy = "ejemplar", cascade = CascadeType.ALL)
-	private List<Mensaje> mensajes = new LinkedList<Mensaje>();
+	private List<Mensaje> mensajes = new ArrayList<Mensaje>();
 
 	
 	
