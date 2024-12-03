@@ -1,9 +1,12 @@
 package com.saragb.tarea3dwesSara.repositorios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.saragb.tarea3dwesSara.modelo.Credenciales;
+
 
 
 
@@ -13,7 +16,14 @@ import com.saragb.tarea3dwesSara.modelo.Credenciales;
 @Repository
 public interface CredencialesRepository extends JpaRepository <Credenciales, Long> {
 
-	Credenciales findByUsuarioAndPassword (String usuario, String pass);
+	@Query(value = "SELECT * FROM credenciales WHERE BINARY usuario = :usuario AND BINARY password = :password", nativeQuery = true)
+	Credenciales findByUsuarioAndPassword(@Param("usuario") String usuario, @Param("password") String password);
+
+	Credenciales findByUsuario(String usuario);
+
+	boolean existsByUsuario(String usuario);
+	
+	
 	
 
 }

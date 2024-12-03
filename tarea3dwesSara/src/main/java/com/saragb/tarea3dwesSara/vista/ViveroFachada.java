@@ -7,20 +7,29 @@ import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.saragb.tarea3dwesSara.modelo.Credenciales;
+import com.saragb.tarea3dwesSara.modelo.Persona;
 import com.saragb.tarea3dwesSara.modelo.Planta;
 import com.saragb.tarea3dwesSara.servicios.Controlador;
 import com.saragb.tarea3dwesSara.servicios.SesionActiva;
+import com.saragb.tarea3dwesSara.utilidades.Validar;
 
 @Controller
 public class ViveroFachada {
 
 	private static ViveroFachada portalVivero;
 
-
-	SesionActiva sesion = new SesionActiva("");
+	@Autowired
+	SesionActiva sesion;
 	
 	@Autowired
 	Controlador controlador;
+	
+	@Autowired
+	MenuPlantas menuPlantas;
+	
+	@Autowired
+	MenuEjemplares menuEjemplares;
 	
 	Scanner scanner = new Scanner(System.in);
 	
@@ -33,7 +42,9 @@ public class ViveroFachada {
 
 	
 	public void iniciarPrograma() {
+		System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 		System.out.println("*** ¡¡Bienvenido a Vivero GestionApp!! ***");
+		System.out.println("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 		mostrarMenuPrincipal();
 		scanner.close();
 	}
@@ -43,7 +54,6 @@ public class ViveroFachada {
 
 		int opcion = 0;
 		do {
-			System.out.println("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 			System.out.println("-------------------------------");
 			System.out.println("      ¿Qué quieres hacer?");
 			System.out.println("-------------------------------");
@@ -90,8 +100,8 @@ public class ViveroFachada {
 						System.out.println("\t¡Hola "+sesion.getUsuario()+"!");
 						System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
 						if (usuario.equalsIgnoreCase("admin")) {
-							//mostrarMenuAdministrador();
-							System.out.println("Callate pandota");
+							mostrarMenuAdministrador();
+
 						} else {
 							//mostrarMenuPersonal();
 						}
@@ -114,7 +124,7 @@ public class ViveroFachada {
 		} while (opcion != 3);
 	}
 
-/*
+
 	public void mostrarMenuAdministrador() {
 
 		int opcion = 0;
@@ -147,11 +157,11 @@ public class ViveroFachada {
 
 			case 2:
 			
-				menuEjemplares.mostrarMenuGestionarEjemplares();
+				menuEjemplares.mostrarMenuGestionarEjemplares(sesion);
 				break;
 
 			case 3:
-				menuMensajes.mostrarMenuGestionarMensajes();
+	//			menuMensajes.mostrarMenuGestionarMensajes();
 				break;
 
 			case 4:
@@ -184,11 +194,11 @@ public class ViveroFachada {
 						System.err.println("Formato de email no válido.");
 					}
 
-					if (svPersona.isEmailRegistrado(email)) {
+					if (controlador.getServiciosPersona().isEmailRegistrado(email)) {
 						System.err.println("Email ya registrado en el sistema.");
 					}
 
-					if (Validar.validarEmail(email) && !svPersona.isEmailRegistrado(email)) {
+					if (Validar.validarEmail(email) && !controlador.getServiciosPersona().isEmailRegistrado(email)) {
 						break;
 					}
 
@@ -202,11 +212,11 @@ public class ViveroFachada {
 						System.err.println("El nombre de usuario no puede contener espacios.");
 					}
 
-					if (svCredenciales.existeUsuario(nombreUsuario)) {
+					if (controlador.getServiciosCredenciales().existeUsuario(nombreUsuario)) {
 						System.err.println("El nombre de usuario ya existe.");
 					}
 
-					if (Validar.validarNombreUsuario(nombreUsuario) && !svCredenciales.existeUsuario(nombreUsuario)) {
+					if (Validar.validarNombreUsuario(nombreUsuario) && !controlador.getServiciosCredenciales().existeUsuario(nombreUsuario)) {
 						break;
 					}
 
@@ -225,7 +235,9 @@ public class ViveroFachada {
 
 				} while (true);
 
-				if (svPersona.registrarPersona(nombre, email, nombreUsuario, contrasena)) {
+				Persona persona = new Persona(nombre, email);
+				Credenciales credenciales = new Credenciales(nombreUsuario.toLowerCase(), contrasena);
+				if (controlador.getServiciosCredenciales().registrarPersonaCredenciales(persona, credenciales)) {
 					System.out.println("Nuevo usuario registrado con éxito\n");
 					
 				} else {
@@ -234,7 +246,7 @@ public class ViveroFachada {
 				break;
 
 			case 5:
-				sesion.setUsuario("");
+				sesion.cerrarSesion();
 				return;
 
 			case 6:
@@ -248,7 +260,7 @@ public class ViveroFachada {
 		} while (opcion != 6);
 	}
 	
-	
+/*
 	public void mostrarMenuPersonal() {
 
 		int opcion = 0;

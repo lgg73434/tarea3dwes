@@ -1,5 +1,7 @@
 package com.saragb.tarea3dwesSara.repositorios;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +14,8 @@ import com.saragb.tarea3dwesSara.modelo.Planta;
 // - Long: Tipo de dato que corresponde al atributo de Planta que lleva la anotación @Id (clave primaria)
 public interface PlantaRepository extends JpaRepository <Planta, Long>{
 
-	
+	Planta findByCodigo(String codigo);
+
+	List<Planta> findAllByOrderByNombreComunAsc();
 	
 }

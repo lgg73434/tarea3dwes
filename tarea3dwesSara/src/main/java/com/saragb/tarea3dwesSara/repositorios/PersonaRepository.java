@@ -9,4 +9,6 @@ import com.saragb.tarea3dwesSara.modelo.Persona;
 //- Long: Tipo de dato que corresponde al atributo de Planta que lleva la anotación @Id  (clave primaria)
 public interface PersonaRepository  extends JpaRepository <Persona, Long>{
 
+	boolean existsByEmail(String email);
+
 }
