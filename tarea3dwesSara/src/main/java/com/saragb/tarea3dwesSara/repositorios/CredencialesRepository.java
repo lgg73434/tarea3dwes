@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.saragb.tarea3dwesSara.modelo.Credenciales;
+import com.saragb.tarea3dwesSara.modelo.Persona;
 
 
 
@@ -22,6 +23,9 @@ public interface CredencialesRepository extends JpaRepository <Credenciales, Lon
 	Credenciales findByUsuario(String usuario);
 
 	boolean existsByUsuario(String usuario);
+
+	@Query("SELECT c.persona FROM Credenciales c WHERE c.usuario = :usuario")
+	Persona findPersonaByUsuario(@Param("usuario") String usuario);
 	
 	
 	

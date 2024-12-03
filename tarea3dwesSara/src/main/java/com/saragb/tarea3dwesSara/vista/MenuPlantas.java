@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 
 import com.saragb.tarea3dwesSara.modelo.Planta;
 import com.saragb.tarea3dwesSara.servicios.Controlador;
-import com.saragb.tarea3dwesSara.servicios.ServiciosPlanta;
 import com.saragb.tarea3dwesSara.utilidades.Validar;
 
 @Controller

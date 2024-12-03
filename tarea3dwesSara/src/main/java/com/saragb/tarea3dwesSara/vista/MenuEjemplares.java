@@ -7,11 +7,16 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+import com.saragb.tarea3dwesSara.modelo.Ejemplar;
+import com.saragb.tarea3dwesSara.modelo.Mensaje;
+import com.saragb.tarea3dwesSara.modelo.Planta;
 import com.saragb.tarea3dwesSara.servicios.Controlador;
 import com.saragb.tarea3dwesSara.servicios.SesionActiva;
+import com.saragb.tarea3dwesSara.utilidades.Validar;
 
-
+@Controller
 public class MenuEjemplares {
 	
 	Scanner scanner = new Scanner(System.in);
@@ -51,16 +56,17 @@ public class MenuEjemplares {
 				System.out.println("**  Registrar nuevo ejemplar  **");
 				System.out.println("--------------------------------");
 
-				if (!svPlanta.mostrarPlantas().isEmpty()) {
+				List<Planta> plantas = controlador.getServiciosPlanta().mostrarPlantas();
+				if (!plantas.isEmpty()) {
 
 					System.out.println("____ Plantas registradas en el vivero ____");
 
-					for (int i = 0; i < svPlanta.mostrarPlantas().size(); i++) {
-						System.out.println(i + 1 + ". " + svPlanta.mostrarPlantas().get(i).getNombreComun());
+					for (int i = 0; i < plantas.size(); i++) {
+						System.out.println(i + 1 + ". " + plantas.get(i).getNombreComun());
 					}
 
 					System.out.println("\n");
-					int numFinalLista = svPlanta.mostrarPlantas().size();
+					int numFinalLista = plantas.size();
 					int numPlanta = 0;
 					do {
 						try {
@@ -72,14 +78,15 @@ public class MenuEjemplares {
 							if (numPlanta < 1 || numPlanta > numFinalLista) {
 								System.err.println("Debes introducir un número entre 1 y " + numFinalLista);
 							} else {
-								Ejemplar e = svEjemplar.crearEjemplar(svPlanta.mostrarPlantas().get(numPlanta - 1));
-								if (e != null) {
-									String mensaje = "Ejemplar registrado por: " + s.getUsuario() + " a las "
+								Planta planta = plantas.get(numPlanta-1);
+								Ejemplar ejemplar = controlador.getServiciosEjemplar().crearEjemplar(planta);
+								if (ejemplar != null) {
+									String mensaje = "Ejemplar registrado por: " + sesion.getUsuario() + " a las "
 											+ Validar.formatoFecha(LocalDateTime.now());
 									Mensaje m = new Mensaje(LocalDateTime.now(), mensaje,
-											svCredenciales.getIdCredenciales(s.getUsuario()), e.getId());
+											controlador.getServiciosCredenciales().findByUsuario(sesion.getUsuario()), ejemplar);
 
-									if (svMensaje.crearMensaje(m) > 0) {
+									if (controlador.getServiciosEjemplar().registrarEjemplarAndMensaje(ejemplar, m)) {
 										System.out.println("\nEjemplar y mensaje inicial registrados con éxito.");
 									} else {
 										System.out.println(
@@ -105,16 +112,16 @@ public class MenuEjemplares {
 				System.out.println("\n--------------------------------");
 				System.out.println("**   Ejemplares de planta/s   **");
 				System.out.println("--------------------------------");
-				List<Planta> plantas = svPlanta.mostrarPlantas();
-				if (!plantas.isEmpty()) {
+				List<Planta> plantas1 = controlador.getServiciosPlanta().mostrarPlantas();
+				if (!plantas1.isEmpty()) {
 
 					System.out.println("____ Plantas existentes en el vivero ____");
-					for (int i = 0; i < plantas.size(); i++) {
-						System.out.println(i + 1 + ". " + plantas.get(i).getNombreComun());
+					for (int i = 0; i < plantas1.size(); i++) {
+						System.out.println(i + 1 + ". " + plantas1.get(i).getNombreComun());
 					}
 
 					System.out.println("\n");
-					int numeroFinalLista = plantas.size();
+					int numeroFinalLista = plantas1.size();
 					int numeroPlanta = 0;
 					List<Planta> plantasElegidas = new ArrayList<Planta>();
 
@@ -135,7 +142,7 @@ public class MenuEjemplares {
 						}
 
 						if (numeroPlanta != 0) {
-							plantasElegidas.add(plantas.get(numeroPlanta - 1));
+							plantasElegidas.add(plantas1.get(numeroPlanta - 1));
 						}
 
 					} while (numeroPlanta != 0);
@@ -144,13 +151,13 @@ public class MenuEjemplares {
 						for (int a = 0; a < plantasElegidas.size(); a++) {
 							System.out.println(
 									"\n\t\t*-*- Ejemplares de " + plantasElegidas.get(a).getNombreComun() + " -*-*");
-							ArrayList<Ejemplar> ejemplares = svEjemplar.mostrarEjemplaresPlanta(plantasElegidas.get(a));
+							List<Ejemplar> ejemplares = controlador.getServiciosEjemplar().mostrarEjemplaresPlanta(plantasElegidas.get(a));
 
 							if (!ejemplares.isEmpty()) {
 								System.out.printf("%-20s %-20s %-20s%n", "NOMBRE", "Nº MENSAJES", "ULTIMO MENSAJE");
 								System.out.println("---------------------------------------------------------------");
 								for (int b = 0; b < ejemplares.size(); b++) {
-									ArrayList<Mensaje> mensajes = svMensaje.getMensajesPorEjemplar(ejemplares.get(b));
+									List<Mensaje> mensajes = controlador.getServiciosMensaje().getMensajesPorEjemplar(ejemplares.get(b));
 									System.out.printf("%-20s %-20d %-20s%n", ejemplares.get(b).getNombre(),
 											mensajes.size(), Validar.formatoFecha(mensajes.get(0).getFechaHora()));
 
@@ -163,14 +170,14 @@ public class MenuEjemplares {
 						}
 
 					} else {
-						System.out.println("No has seleccionado ninguna planta para ver sus ejemplares.");
+						System.out.println("No has seleccionado ninguna planta de la que ver sus ejemplares.");
 					}
 
 				} else {
 					System.out.println("Aún no hay plantas registradas en el vivero.");
 				}
 				break;
-
+/*
 			case 3:
 				System.out.println("\n--------------------------------");
 				System.out.println("**   Mensajes de seguimiento   **");
@@ -221,7 +228,7 @@ public class MenuEjemplares {
 				}
 
 				break;
-
+*/
 			case 4:
 				return;
 

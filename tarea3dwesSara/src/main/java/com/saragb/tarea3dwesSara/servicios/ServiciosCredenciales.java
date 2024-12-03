@@ -56,6 +56,12 @@ public class ServiciosCredenciales {
 		}
 			return false;
 		}
+
+	public Persona findByUsuario(String usuario) {
+		return credencialesRepo.findPersonaByUsuario(usuario);
+	}
+
+
 	
 
 
