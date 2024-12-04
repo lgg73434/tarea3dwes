@@ -23,6 +23,8 @@ public interface EjemplarRepository extends JpaRepository <Ejemplar, Long>{
 
 	List<Ejemplar> findAllByOrderByNombreAsc();
 
+	Ejemplar findByNombre(String nombre);
+
 
 	
 

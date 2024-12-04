@@ -52,6 +52,10 @@ public class ServiciosEjemplar {
 		return ejemplarRepo.findAllByOrderByNombreAsc();
 	}
 
+	public Ejemplar findEjemplarByNombre(String nombre) {
+		return ejemplarRepo.findByNombre(nombre);
+	}
+
 
 
 }

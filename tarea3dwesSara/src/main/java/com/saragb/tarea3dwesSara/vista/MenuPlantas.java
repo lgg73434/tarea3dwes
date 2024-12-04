@@ -17,7 +17,6 @@ public class MenuPlantas {
 	@Autowired
 	Controlador controlador;
 
-	
 	Scanner scanner = new Scanner(System.in);
 	
 	public void mostrarMenuGestionarPlantas() {
@@ -92,9 +91,9 @@ public class MenuPlantas {
 				Planta plantaNueva = new Planta(codigo.toUpperCase(), nombreComun, nombreCientifico);
 
 				if (controlador.getServiciosPlanta().registrarPlanta(plantaNueva)) {
-					System.out.println("Nueva planta registrada con éxito");
+					System.out.println("\nNueva planta registrada con éxito");
 				} else {
-					System.err.println("Error al registrar la nueva planta.");
+					System.err.println("\nError al registrar la nueva planta.");
 				}
 
 				break;

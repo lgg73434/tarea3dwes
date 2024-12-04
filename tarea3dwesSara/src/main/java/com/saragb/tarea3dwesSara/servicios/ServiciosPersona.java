@@ -3,7 +3,6 @@ package com.saragb.tarea3dwesSara.servicios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.saragb.tarea3dwesSara.modelo.Ejemplar;
 import com.saragb.tarea3dwesSara.modelo.Persona;
 import com.saragb.tarea3dwesSara.repositorios.PersonaRepository;
 
@@ -18,10 +17,11 @@ public class ServiciosPersona {
 
 	}
 
-	public Persona getPersonaPorId(Persona persona) {
-	
-		return personaRepo.findById(persona.getId());
+	public Persona findPersonaByUsuario(String usuario) {
+		return personaRepo.findPersonaByUsuario(usuario);
+		
 	}
+
 
 	
 

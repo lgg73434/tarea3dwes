@@ -45,7 +45,7 @@ public class MenuEjemplares {
 				scanner.nextLine();
 
 			} catch (InputMismatchException e) {
-				System.out.println("Opción no válida. Debes introducir un número entero.");
+				System.err.println("Opción no válida. Debes introducir un número entero.");
 				scanner.nextLine(); // Limpiar el buffer de entrada
 				continue; // Volver a pedir la opción
 			}
@@ -70,8 +70,7 @@ public class MenuEjemplares {
 					int numPlanta = 0;
 					do {
 						try {
-							System.out.println(
-									"Introduce el numero de la planta de la que quieres registrar un ejemplar:");
+							System.out.println("Introduce el numero de la planta de la que quieres registrar un ejemplar:");
 							numPlanta = scanner.nextInt();
 							scanner.nextLine();
 
@@ -107,7 +106,7 @@ public class MenuEjemplares {
 					} while (numPlanta < 1 || numPlanta > numFinalLista);
 					
 				} else {
-					System.out.println("Aún no hay plantas registradas en el vivero.");
+					System.out.println("\nAún no hay plantas registradas en el vivero.");
 				}
 
 				break;
@@ -131,8 +130,7 @@ public class MenuEjemplares {
 					List<Planta> plantasElegidas = new ArrayList<Planta>();
 
 					do {
-						System.out.println(
-								"Introduce el número de la planta de la que quieres ver los ejemplares o introduce 0 para salir:");
+						System.out.println("Introduce el número de la planta de la que quieres ver los ejemplares o introduce 0 para salir:");
 						try {
 							numeroPlanta = scanner.nextInt();
 							scanner.nextLine();
@@ -168,18 +166,18 @@ public class MenuEjemplares {
 
 								}
 							} else {
-								System.out.println("No existen ejemplares registrados de "
+								System.out.println("\nNo existen ejemplares registrados de "
 										+ plantasElegidas.get(a).getNombreComun() + ".");
 							}
 
 						}
 
 					} else {
-						System.out.println("No has seleccionado ninguna planta de la que ver sus ejemplares.");
+						System.out.println("\nNo has seleccionado ninguna planta de la que ver sus ejemplares.");
 					}
 
 				} else {
-					System.out.println("Aún no hay plantas registradas en el vivero.");
+					System.out.println("\nAún no hay plantas registradas en el vivero.");
 				}
 				break;
 
@@ -218,23 +216,23 @@ public class MenuEjemplares {
  
 					List<Mensaje> mensajesEjemplar = controlador.getServiciosMensaje().getMensajesPorEjemplar(ejemplares.get(numEjemplar-1));
 					if (mensajesEjemplar.isEmpty()) {
-						System.out.println("El ejemplar " + ejemplares.get(numEjemplar - 1).getNombre() +" aún no tiene mensajes.");
+						System.out.println("\nEl ejemplar " + ejemplares.get(numEjemplar - 1).getNombre() +" aún no tiene mensajes.");
 					} else {
 						System.out.println(
-								"____ Mensajes del ejemplar: " + ejemplares.get(numEjemplar - 1).getNombre()+" ____");
+								"\n____ Mensajes del ejemplar: " + ejemplares.get(numEjemplar - 1).getNombre()+" ____");
 						for (Mensaje m : mensajesEjemplar) {
 							System.out.println(Validar.formatoFecha(m.getFechaHora()) + "\t"
-									+ controlador.getServiciosPersona().getPersonaPorId(m.getPersona()).getNombre() + "\n\t" + m.getMensaje()
+									+ m.getPersona().getNombre() + "\n\t" + m.getMensaje()
 									+ "\n");
 						}
 					}
 
 				} else {
-					System.out.println("Aún no hay ejemplares registrados en el vivero.");
+					System.out.println("\nAún no hay ejemplares registrados en el vivero.");
 				}
 
 				break;
-*/
+
 			case 4:
 				return;
 

@@ -31,6 +31,9 @@ public class ViveroFachada {
 	@Autowired
 	MenuEjemplares menuEjemplares;
 	
+	@Autowired
+	MenuMensajes menuMensajes;
+	
 	Scanner scanner = new Scanner(System.in);
 	
 		
@@ -42,9 +45,9 @@ public class ViveroFachada {
 
 	
 	public void iniciarPrograma() {
-		System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+		System.out.println("\n\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 		System.out.println("*** ¡¡Bienvenido a Vivero GestionApp!! ***");
-		System.out.println("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+		System.out.println("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
 		mostrarMenuPrincipal();
 		scanner.close();
 	}
@@ -54,7 +57,7 @@ public class ViveroFachada {
 
 		int opcion = 0;
 		do {
-			System.out.println("-------------------------------");
+			System.out.println("\n-------------------------------");
 			System.out.println("      ¿Qué quieres hacer?");
 			System.out.println("-------------------------------");
 			System.out.println("Selecciona una opción:");
@@ -103,7 +106,7 @@ public class ViveroFachada {
 							mostrarMenuAdministrador();
 
 						} else {
-							//mostrarMenuPersonal();
+							mostrarMenuPersonal();
 						}
 
 					} else {
@@ -114,7 +117,7 @@ public class ViveroFachada {
 				break;
 
 			case 3:
-				System.out.println("¡Adios!");
+				System.out.println("\n¡Adios!");
 				break;
 
 			default:
@@ -161,7 +164,7 @@ public class ViveroFachada {
 				break;
 
 			case 3:
-	//			menuMensajes.mostrarMenuGestionarMensajes();
+				menuMensajes.mostrarMenuGestionarMensajes(sesion);
 				break;
 
 			case 4:
@@ -235,7 +238,7 @@ public class ViveroFachada {
 
 				} while (true);
 
-				Persona persona = new Persona(nombre, email);
+				Persona persona = new Persona(nombre, email.toLowerCase());
 				Credenciales credenciales = new Credenciales(nombreUsuario.toLowerCase(), contrasena);
 				if (controlador.getServiciosCredenciales().registrarPersonaCredenciales(persona, credenciales)) {
 					System.out.println("Nuevo usuario registrado con éxito\n");
@@ -250,7 +253,7 @@ public class ViveroFachada {
 				return;
 
 			case 6:
-				System.out.println("¡Adios!");
+				System.out.println("\n¡Adios!");
 				System.exit(0);
 
 			default:
@@ -260,7 +263,7 @@ public class ViveroFachada {
 		} while (opcion != 6);
 	}
 	
-/*
+	
 	public void mostrarMenuPersonal() {
 
 		int opcion = 0;
@@ -285,19 +288,19 @@ public class ViveroFachada {
 
 			switch (opcion) {
 			case 1:
-				menuEjemplares.mostrarMenuGestionarEjemplares();
+				menuEjemplares.mostrarMenuGestionarEjemplares(sesion);
 				break;
 
 			case 2:
-				menuMensajes.mostrarMenuGestionarMensajes();
+				menuMensajes.mostrarMenuGestionarMensajes(sesion);
 				break;
 
 			case 3:
-				sesion.setUsuario("");
+				sesion.cerrarSesion();;
 				return;
 
 			case 4:
-				System.out.println("¡Adios!");
+				System.out.println("\n¡Adios!");
 				System.exit(0);
 
 			default:
@@ -307,7 +310,7 @@ public class ViveroFachada {
 		} while (opcion != 4);
 
 	}
-*/
+	
 	
 	public void cerrarScanner() {
 		if (scanner != null) {
