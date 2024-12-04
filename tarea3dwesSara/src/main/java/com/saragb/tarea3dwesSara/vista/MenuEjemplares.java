@@ -77,9 +77,11 @@ public class MenuEjemplares {
 
 							if (numPlanta < 1 || numPlanta > numFinalLista) {
 								System.err.println("Debes introducir un número entre 1 y " + numFinalLista);
+								
 							} else {
 								Planta planta = plantas.get(numPlanta-1);
 								Ejemplar ejemplar = controlador.getServiciosEjemplar().crearEjemplar(planta);
+								
 								if (ejemplar != null) {
 									String mensaje = "Ejemplar registrado por: " + sesion.getUsuario() + " a las "
 											+ Validar.formatoFecha(LocalDateTime.now());
@@ -101,7 +103,9 @@ public class MenuEjemplares {
 							System.err.println("Debes introducir un número entero.");
 							scanner.nextLine();
 						}
+						
 					} while (numPlanta < 1 || numPlanta > numFinalLista);
+					
 				} else {
 					System.out.println("Aún no hay plantas registradas en el vivero.");
 				}
@@ -112,6 +116,7 @@ public class MenuEjemplares {
 				System.out.println("\n--------------------------------");
 				System.out.println("**   Ejemplares de planta/s   **");
 				System.out.println("--------------------------------");
+				
 				List<Planta> plantas1 = controlador.getServiciosPlanta().mostrarPlantas();
 				if (!plantas1.isEmpty()) {
 
@@ -177,12 +182,12 @@ public class MenuEjemplares {
 					System.out.println("Aún no hay plantas registradas en el vivero.");
 				}
 				break;
-/*
+
 			case 3:
 				System.out.println("\n--------------------------------");
 				System.out.println("**   Mensajes de seguimiento   **");
 				System.out.println("--------------------------------");
-				ArrayList<Ejemplar> ejemplares = svEjemplar.mostrarEjemplares();
+				List<Ejemplar> ejemplares = controlador.getServiciosEjemplar().mostrarEjemplares();
 				if (!ejemplares.isEmpty()) {
 
 					System.out.println("____ Ejemplares existentes en el vivero ____");
@@ -210,15 +215,16 @@ public class MenuEjemplares {
 						}
 
 					} while (true);
-
-					if (svMensaje.getMensajesPorEjemplar(ejemplares.get(numEjemplar - 1)).isEmpty()) {
+ 
+					List<Mensaje> mensajesEjemplar = controlador.getServiciosMensaje().getMensajesPorEjemplar(ejemplares.get(numEjemplar-1));
+					if (mensajesEjemplar.isEmpty()) {
 						System.out.println("El ejemplar " + ejemplares.get(numEjemplar - 1).getNombre() +" aún no tiene mensajes.");
 					} else {
 						System.out.println(
 								"____ Mensajes del ejemplar: " + ejemplares.get(numEjemplar - 1).getNombre()+" ____");
-						for (Mensaje m : svMensaje.getMensajesPorEjemplar(ejemplares.get(numEjemplar - 1))) {
+						for (Mensaje m : mensajesEjemplar) {
 							System.out.println(Validar.formatoFecha(m.getFechaHora()) + "\t"
-									+ svPersona.getPersonaporID(m.getIdPersona()).getNombre() + "\n\t" + m.getMensaje()
+									+ controlador.getServiciosPersona().getPersonaPorId(m.getPersona()).getNombre() + "\n\t" + m.getMensaje()
 									+ "\n");
 						}
 					}

@@ -21,6 +21,8 @@ public interface EjemplarRepository extends JpaRepository <Ejemplar, Long>{
 	@Query("SELECT e FROM Ejemplar e WHERE e.planta = :planta")
 	List<Ejemplar> findByPlanta(@Param("planta") Planta planta);
 
+	List<Ejemplar> findAllByOrderByNombreAsc();
+
 
 	
 

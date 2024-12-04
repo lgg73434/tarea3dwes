@@ -48,6 +48,10 @@ public class ServiciosEjemplar {
 		return ejemplarRepo.findByPlanta(planta);
 	}
 
+	public List<Ejemplar> mostrarEjemplares() {
+		return ejemplarRepo.findAllByOrderByNombreAsc();
+	}
+
 
 
 }

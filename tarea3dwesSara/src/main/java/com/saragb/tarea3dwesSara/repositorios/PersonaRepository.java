@@ -10,5 +10,7 @@ import com.saragb.tarea3dwesSara.modelo.Persona;
 public interface PersonaRepository  extends JpaRepository <Persona, Long>{
 
 	boolean existsByEmail(String email);
+	
+	
 
 }
