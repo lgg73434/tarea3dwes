@@ -15,10 +15,6 @@ public class ServiciosPlanta {
 	
 	@Autowired
 	PlantaRepository plantaRepo;
-	
-	@Autowired
-	ServiciosEjemplar svEjemplar;
-	
 
 
 	public List<Planta> mostrarPlantas() {
