@@ -140,7 +140,7 @@ public class MenuEjemplares {
 						}
 
 						if (numeroPlanta > numeroFinalLista || numeroPlanta < 0) {
-							System.err.println("Debes introducir un número entre 0 y " + numeroFinalLista);
+							System.err.println("Debes introducir un número entre 1 y " + numeroFinalLista);
 							continue;
 						}
 

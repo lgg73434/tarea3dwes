@@ -264,7 +264,7 @@ public class MenuMensajes {
 				return;
 
 			default:
-				System.out.println("Opción incorrecta.");
+				System.err.println("Opción incorrecta.");
 			}
 		} while (opcion != 5);
 
