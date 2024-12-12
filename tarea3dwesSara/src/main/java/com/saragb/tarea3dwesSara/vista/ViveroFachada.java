@@ -44,6 +44,10 @@ public class ViveroFachada {
 	}
 
 	
+	/**
+	 * Inicia el programa mostrando un mensaje de bienvenida y luego muestra el menú principal.
+	 * Después de ejecutar las acciones, cierra el scanner.
+	 */
 	public void iniciarPrograma() {
 		System.out.println("\n\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 		System.out.println("*** ¡¡Bienvenido a Vivero GestionApp!! ***");
@@ -53,6 +57,20 @@ public class ViveroFachada {
 	}
 
 	
+	/**
+	 * Muestra el menú principal del programa y gestiona las opciones seleccionadas por el usuario.
+	 * Ofrece tres opciones:
+	 * 1. Ver plantas (Modo invitado).
+	 * 2. Iniciar sesión con usuario y contraseña.
+	 * 3. Salir del programa.
+	 * 
+	 * El método permite al usuario interactuar con el programa mediante un ciclo que valida la entrada
+	 * y ejecuta acciones correspondientes a cada opción. Si se selecciona la opción de inicio de sesión,
+	 * se valida el usuario y la contraseña, y en caso de éxito, muestra el menú adecuado según el rol del usuario.
+	 * 
+	 * Si el usuario selecciona la opción 1, se muestran las plantas registradas en el vivero.
+	 * En caso de seleccionar una opción no válida, el programa muestra un mensaje de error.
+	 */
 	public void mostrarMenuPrincipal() {
 
 		int opcion = 0;

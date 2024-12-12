@@ -21,11 +21,11 @@ import jakarta.persistence.TemporalType;
 @Table(name="mensajes")
 public class Mensaje  implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Atributos
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -46,6 +46,10 @@ public class Mensaje  implements Serializable{
 	@JoinColumn(name="idEjemplar", nullable = false)
 	private Ejemplar ejemplar;
 
+	
+	/**
+	 * Constructores
+	 */
 	public Mensaje() {
 	}
 
@@ -56,6 +60,10 @@ public class Mensaje  implements Serializable{
 		this.ejemplar = ejemplar;
 	}
 
+	
+	/**
+	 * Getters and Setters
+	 */
 	public Long getId() {
 		return id;
 	}

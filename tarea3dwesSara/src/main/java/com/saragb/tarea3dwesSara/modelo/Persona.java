@@ -18,13 +18,13 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="personas")
 public class Persona implements Serializable{
-	
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
+	
+	/*
+	 * Atributos
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -41,6 +41,10 @@ public class Persona implements Serializable{
 	@OneToMany(mappedBy = "persona")
 	private List<Mensaje> mensajes = new ArrayList<Mensaje>();
 
+	
+	/**
+	 * Constructores
+	 */
 	public Persona() {
 	}
 
@@ -49,6 +53,10 @@ public class Persona implements Serializable{
 		this.email = email;
 	}
 
+	
+	/**
+	 * Getters and Setters
+	 */
 	public Long getId() {
 		return id;
 	}

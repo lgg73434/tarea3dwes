@@ -19,6 +19,24 @@ public class MenuPlantas {
 
 	Scanner scanner = new Scanner(System.in);
 	
+	
+	/**
+	 * Muestra el menú de opciones para gestionar las plantas en el sistema.
+	 * Permite al administrador registrar nuevas plantas, modificar plantas existentes
+	 * o volver al menú anterior.
+	 * 
+	 * Las opciones disponibles en el menú son:
+	 * 1. Registrar planta: Permite al administrador registrar una nueva planta proporcionando
+	 *    el código, nombre común y nombre científico de la planta.
+	 * 2. Modificar planta: Permite al administrador seleccionar una planta ya registrada
+	 *    para actualizar su nombre común y nombre científico.
+	 * 3. Volver atrás: Regresa al menú anterior.
+	 * 
+	 * El método gestiona la entrada del usuario y realiza las acciones correspondientes según
+	 * la opción seleccionada. Si se selecciona la opción 1 o 2, se realizan validaciones en
+	 * los campos antes de registrar o actualizar la planta en el sistema. Si la opción seleccionada
+	 * es inválida, el sistema vuelve a mostrar el menú.
+	 */
 	public void mostrarMenuGestionarPlantas() {
 
 		int opcion = 0;

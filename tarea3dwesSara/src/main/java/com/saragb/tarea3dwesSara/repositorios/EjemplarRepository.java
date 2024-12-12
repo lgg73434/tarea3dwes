@@ -18,11 +18,27 @@ import com.saragb.tarea3dwesSara.modelo.Planta;
 //- Long: Tipo de dato que corresponde al atributo de Planta que lleva la anotación @Id  (clave primaria)
 public interface EjemplarRepository extends JpaRepository <Ejemplar, Long>{
 
+	/**
+	 * Devuelve una lista de ejemplares filtrando por planta
+	 * @param planta
+	 * @return Lista de ejemplares
+	 */
 	@Query("SELECT e FROM Ejemplar e WHERE e.planta = :planta")
 	List<Ejemplar> findByPlanta(@Param("planta") Planta planta);
 
+	
+	/**
+	 * Devuelve todos los ejemplares registrados en orden alfabético
+	 * @return lista de ejemplares
+	 */
 	List<Ejemplar> findAllByOrderByNombreAsc();
 
+	
+	/**
+	 * Busca un ejemplar a partir de un nombre
+	 * @param nombre
+	 * @return Ejemplar
+	 */
 	Ejemplar findByNombre(String nombre);
 
 

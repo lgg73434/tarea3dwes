@@ -12,11 +12,22 @@ public class ServiciosPersona {
 	@Autowired
 	PersonaRepository personaRepo;
 
+	/**
+	 * Comprueba si un email ya está registrado en el sistema
+	 * @param email
+	 * @return true si ya existe || false si no existe
+	 */ 
 	public boolean isEmailRegistrado(String email) {
 		return personaRepo.existsByEmail(email);
 
 	}
 
+	
+	/**
+	 * Busca una persona a partir de un nombre de usuario
+	 * @param usuario
+	 * @return Persona
+	 */
 	public Persona findPersonaByUsuario(String usuario) {
 		return personaRepo.findPersonaByUsuario(usuario);
 		

@@ -17,12 +17,12 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="plantas")
 public class Planta  implements Serializable{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Atributos
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -39,6 +39,10 @@ public class Planta  implements Serializable{
 	@OneToMany(mappedBy = "planta", cascade = CascadeType.ALL)
 	private List<Ejemplar> ejemplares = new ArrayList<Ejemplar>();
 
+	
+	/**
+	 * Constructores
+	 */
 	public Planta() {
 	}
 
@@ -48,6 +52,10 @@ public class Planta  implements Serializable{
 		this.nombreCientifico = nombreCientifico;
 	}
 
+	
+	/**
+	 * Getters and Setters
+	 */
 	public Long getId() {
 		return id;
 	}

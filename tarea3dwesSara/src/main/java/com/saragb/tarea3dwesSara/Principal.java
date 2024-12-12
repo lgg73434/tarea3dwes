@@ -12,7 +12,7 @@ public class Principal implements CommandLineRunner{
 	@Autowired
 	ViveroFachada portalVivero;
 	
-	//Esto viene a ser el 'main'
+	
 	@Override
 	public void run(String... args) throws Exception {
 		portalVivero.iniciarPrograma();

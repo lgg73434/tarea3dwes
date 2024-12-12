@@ -15,11 +15,11 @@ import jakarta.persistence.Table;
 @Table(name="credenciales")
 public class Credenciales implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Atributos
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -36,7 +36,9 @@ public class Credenciales implements Serializable{
 
 	
 	
-	
+	/**
+	 * Constructores
+	 */
 	public Credenciales() {
 	}
 
@@ -53,7 +55,9 @@ public class Credenciales implements Serializable{
 
 	
 	
-	
+	/**
+	 * Getter and Setters
+	 */
 	public Long getId() {
 		return id;
 	}

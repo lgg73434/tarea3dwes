@@ -17,10 +17,20 @@ public class ServiciosPlanta {
 	PlantaRepository plantaRepo;
 
 
+	/**
+	 * Muestra todas las plantas registradas en el sistema
+	 * @return lista de plantas
+	 */
 	public List<Planta> mostrarPlantas() {
 		return plantaRepo.findAllByOrderByNombreComunAsc();
 	}
 
+	
+	/**
+	 * Comprueba si un código ya está registrado en el sistema
+	 * @param codigo
+	 * @return true si existe || false si no existe
+	 */
 	public boolean existeCodigo(String codigo) {
 		if(plantaRepo.findByCodigo(codigo) != null)
 			return true;
@@ -28,6 +38,12 @@ public class ServiciosPlanta {
 		return false;
 	}
 
+	
+	/**
+	 * Notifica si el registro de una nueva planta se efectua con exito
+	 * @param planta
+	 * @return true si se efectua el registro || false si falla el registro
+	 */
 	public boolean registrarPlanta(Planta planta) {
 		if(plantaRepo.save(planta) != null)
 			return true;
@@ -35,6 +51,12 @@ public class ServiciosPlanta {
 		return false;
 	}
 
+	
+	/**
+	 * Notifica si los datos de una planta se actualizan correctamente
+	 * @param plantaNueva
+	 * @return true si se efectua el cambio || false si no se efectua el cambio
+	 */
 	public boolean actualizarPlanta(Planta plantaNueva) {
 		Planta plantaVieja = plantaRepo.findByCodigo(plantaNueva.getCodigo());
 		

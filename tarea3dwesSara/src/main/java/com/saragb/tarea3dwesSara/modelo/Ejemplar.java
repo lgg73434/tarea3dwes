@@ -19,11 +19,11 @@ import jakarta.persistence.Table;
 @Table(name="ejemplares")
 public class Ejemplar implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Atributos
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -40,7 +40,9 @@ public class Ejemplar implements Serializable{
 
 	
 	
-	
+	/**
+	 * Constructores
+	 */
 	public Ejemplar() {
 	}
 
@@ -51,7 +53,9 @@ public class Ejemplar implements Serializable{
 	
 	
 	
-
+	/**
+	 * Getters and Setters
+	 */
 	public Long getId() {
 		return id;
 	}
